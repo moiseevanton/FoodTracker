@@ -29,6 +29,22 @@ class MealTableViewController: UITableViewController {
         }
     }
     
+    // MARK: sign up
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Check if the user already signed up
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        if let user = userDefaults.objectForKey("user") as! NSDictionary? {
+            print(user)
+        } else {
+            self.performSegueWithIdentifier("signupSegue", sender: nil)
+        }
+        
+        
+    }
+    
     func loadSampleMeals() {
         let photo1 = UIImage(named: "meal1")!
         let meal1 = Meal(name: "Caprese Salad", photo: photo1, rating: 4)!
